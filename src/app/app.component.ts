@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
   }
 
+  // For Form Detail Save
   saveEmpmloyee(value, i) {
     let hobbies = [];
     for(let data of value.Hobbies) {
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
 
   }
 
+  // For Dynamically adding hobbies fields
   onAddHobbies() {
     this.arr = this.employeeForm.get('Hobbies') as FormArray;
     this.arr.push(this.createItem());
@@ -63,6 +65,7 @@ export class AppComponent implements OnInit {
     })
   }
  
+  // For File Selection and validation
   onSelectFile(event) {
     let file = event.target.files[0]
     if(file.type == 'image/jpeg') {
