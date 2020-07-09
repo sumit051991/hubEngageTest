@@ -1,0 +1,87 @@
+<div class="form-row">
+   <div class= "form-group col-12">
+
+    <form [formGroup]="employeeForm">
+
+      <div class="form-group col-3">
+        <label class="hoverable" for="fileInput"> 
+            <img [src]="url ? url : 'assets/images/avatar.png'"> 
+            <div class="hover-text">Upload Image</div>
+            <div class="background"></div>
+          </label>
+          <br/>
+          <input id="fileInput" type='file' formControlName="profile" (change)="onSelectFile($event)">
+          <!-- <input id="fileInput" (onFileSelected)="fileSelected($event)" formControlName="ImageUrl" #imageFileInput type="file"
+            ng2FileSelect [uploader]="uploader" /> -->
+          <!-- <button *ngIf="url" (click)="delete()" >delete</button> -->
+        </div>
+
+      <div class="form-group col-3">
+        <label for="">Name</label>
+        <input type="text" name="" formControlName="Name" class="form-control" appOmitSpecialChar maxlength="10">
+
+        <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Name'].errors?.pattern &&
+              employeeForm.controls['Name'].touched">Name is <strong>Invalid</strong></span>
+              <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Name'].errors?.required ">
+              Name <strong>required</strong></span>
+
+      </div>
+      <div class="form-group col-3">
+        <label for="">Email</label>
+        <input type="text" name="" formControlName="Email" class="form-control">
+
+        <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Email'].errors?.pattern &&
+              employeeForm.controls['Email'].touched">Email is <strong>Invalid</strong></span>
+              <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Email'].errors?.required ">
+              Email is <strong>required</strong></span>
+
+      </div>
+      <div class="form-group col-3">
+      <label for="name">Hobbies:</label>
+      </div>
+      <div class="form-group col-3" formArrayName="Hobbies" *ngFor="let a of employeeForm.get('Hobbies').controls; let i = index">
+        <div [formGroupName]="i" style="margin-bottom: 10px;">
+          
+          <input type="text" name="name" formControlName="hobbies">
+          <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Hobbies'].errors?.pattern &&
+              employeeForm.controls['Hobbies'].touched">Hobbies is <strong>Invalid</strong></span>
+              <span class="help-block form-error text-danger small" 
+              *ngIf="employeeForm.controls['Hobbies'].errors?.required ">
+              Hobbies is <strong>required</strong></span>
+        </div>
+      </div>
+
+      <div class="form-group col-3">
+        <button type="button" class="btn btn-primary" (click)="onAddHobbies()">Add Hobbies</button>
+      </div>
+
+
+
+      <div class="col-lg-12 col-md-12 col-12 pad0" style="text-align: center">
+        <div class="row">
+        <span class="col-xl-4 col-lg-12 col-md-12 col-12"></span>
+        <span class="col-xl-4 col-lg-12 col-md-12 col-12">
+        <button type="button" style="background-color: #4c76e9; color: #363636; margin: 10px"
+         class="btn btn-new btnCase my-0 waves-light btnPrimary" [disabled]="employeeForm.invalid"
+         (click)="saveEmpmloyee(employeeForm.value)" >
+                 Save
+        </button>
+       </span>
+       </div>
+     </div>
+    </form>
+
+   </div>
+
+</div>
+
+<div class="form-row">
+  <div class= "form-group col-12">
+    {{formData | json}}
+    </div>
+    </div>
